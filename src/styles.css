@@ -19,6 +19,8 @@
  */
 
 @theme inline {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-sans: "DM Sans", sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -62,26 +64,26 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --radius: 0.375rem;
+  --background: oklch(0.139 0.008 240);
+  --foreground: oklch(0.941 0.008 225);
+  --card: oklch(0.205 0.014 244);
+  --card-foreground: oklch(0.941 0.008 225);
+  --popover: oklch(0.205 0.014 244);
+  --popover-foreground: oklch(0.941 0.008 225);
+  --primary: oklch(0.816 0.129 174);
+  --primary-foreground: oklch(0.139 0.008 240);
+  --secondary: oklch(0.205 0.014 244 / 0.82);
+  --secondary-foreground: oklch(0.941 0.008 225);
+  --muted: oklch(0.245 0.014 244);
+  --muted-foreground: oklch(0.68 0.035 240);
+  --accent: oklch(0.29 0.02 235);
+  --accent-foreground: oklch(0.941 0.008 225);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.941 0.008 225 / 0.11);
+  --input: oklch(0.941 0.008 225 / 0.14);
+  --ring: oklch(0.816 0.129 174);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +142,42 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: "DM Sans", sans-serif;
+    letter-spacing: 0;
+  }
+
+  button, a, input {
+    letter-spacing: 0;
   }
 }
+
+@utility glass-1 {
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--card) 70%, transparent);
+  backdrop-filter: blur(12px) saturate(125%);
+}
+
+@utility glass-2 {
+  border: 1px solid color-mix(in oklab, var(--foreground) 15%, transparent);
+  background: color-mix(in oklab, var(--background) 72%, transparent);
+  backdrop-filter: blur(18px) saturate(135%);
+}
+
+@utility glass-3 {
+  border: 1px solid color-mix(in oklab, var(--foreground) 16%, transparent);
+  background: color-mix(in oklab, var(--card) 92%, transparent);
+  backdrop-filter: blur(28px) saturate(140%);
+}
+
+.bg-hero-shade { background: linear-gradient(to top, var(--background) 2%, color-mix(in oklab, var(--background) 45%, transparent) 52%, transparent 100%); }
+.bg-player-controls { background: linear-gradient(to top, color-mix(in oklab, var(--background) 96%, transparent), transparent); }
+.hero-slashes span { position: absolute; top: -20%; height: 150%; transform: rotate(20deg); backdrop-filter: blur(3px); }
+.hero-slashes span:nth-child(1) { left: 38%; width: 8rem; background: color-mix(in oklab, var(--primary) 11%, transparent); }
+.hero-slashes span:nth-child(2) { left: 54%; width: 4rem; background: color-mix(in oklab, var(--foreground) 6%, transparent); }
+.hero-slashes span:nth-child(3) { right: 12%; width: 7rem; background: color-mix(in oklab, var(--primary) 8%, transparent); }
+.eq-bar { height: 100%; animation: eq ease-in-out infinite; }
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+@keyframes eq { 0%,100% { transform: scaleY(.35); } 50% { transform: scaleY(1); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
